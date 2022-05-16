@@ -1,46 +1,38 @@
-# Getting Started with Create React App
+# react-hook-form-select
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## install
 
-## Available Scripts
+```shell
+~$ yarn add react-hook-form
+```
 
-In the project directory, you can run:
+## select, option element
 
-### `yarn start`
+`select` 요소는 `option` 메뉴를 제공하는 컨트롤을 나타낸다.
+모든 `<option>`은 자신이 선택됐을 대 값으로써 사용할 `value` 특성을 필요로 한다.
+만약, `value` 값이 없다면 해당 요소 안의 텍스트를 값으로 사용한다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`select` 요소를 조작할 때 사용할 수 있는 여러가지 고유 특성이 존재하는데, 대표적으로
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- `multiple`, 다수의 항목을 동시에 선택할 수 있다.
+- `size`, 한 번에 노출되는 항목의 수를 조절할 수 있다.
+- `required`, `disabled`, `autofocus`, ..., 일반적인 양식 입력 요소의 특성 또한 사용할 수 있다.
 
-### `yarn test`
+`<option>` 요소를 `<optgroup>` 요소 안에 배치하면 드롭다운 내에서 옵션 그룹을 나눌 수 있다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## select, option with react-hook-form
 
-### `yarn build`
+`useForm()` 의 반환값으로 `register` 를 반환하며, `register` 의 파라미터값으로 속성값을 등록하면 form 내부에서 관리하는 상태로 등록된다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```ts
+const { register } = useForm();
+const registeredSelect = register("select");
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`register()` 의 반환값이 궁금하니 타입을 확인해보자. react-hook-form에서 `UseFormRegisterReturn` 타입을 제공한다. 또한, 이 반환값들은 `select`에 바로 사용가능하다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+타입 정보는 [https://react-hook-form.com/ts](https://react-hook-form.com/ts)에서 확인할 수 있다.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```tsx
+<select {...register("select")}>// ...</select>
+```

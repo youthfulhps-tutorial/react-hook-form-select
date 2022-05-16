@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { useForm } from "react-hook-form";
+import Select from "./components/Select";
 
 function App() {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = handleSubmit((data) => alert(JSON.stringify(data)));
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form onSubmit={onSubmit}>
+        <Select registerReturn={{ ...register("select") }} />
+        <input type="submit" />
+      </form>
     </div>
   );
 }
