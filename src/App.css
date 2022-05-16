@@ -9,13 +9,15 @@
 }
 
 select {
-  width: 320px;
+  width: 328px;
   padding: 12px;
+  margin: 4px 0;
 }
 
 input[type="submit"] {
+  width: 328px;
   padding: 12px;
-  margin-left: 8px;
+  margin: 4px 0;
 }
 
 .App-logo {
