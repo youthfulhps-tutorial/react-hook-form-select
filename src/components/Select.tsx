@@ -1,5 +1,6 @@
 import React from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
+import { selectableOptions } from "../constants";
 
 export interface SelectableOption {
   value: string;
@@ -14,12 +15,6 @@ interface SelectProps {
 //are onChange, onBlur, name, ref...
 
 function Select({ registerReturn }: SelectProps) {
-  const selectableOptions: SelectableOption[] = [
-    { label: "large", value: "large" },
-    { label: "medium", value: "medium" },
-    { label: "small", value: "small" },
-  ];
-
   return (
     <select {...registerReturn}>
       {selectableOptions.map((selectableOption) => (
